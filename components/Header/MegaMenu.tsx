@@ -41,10 +41,10 @@ export default function MegaMenu() {
           </div>
           <div className="col-md-3">
             <h6 className="fw-bold small mb-3">SS26 MASON'S MEN</h6>
-            <img 
-              src="https://via.placeholder.com/400x250" 
-              alt="Promo" 
-              className="img-fluid" 
+            <img
+              src="https://via.placeholder.com/400x250"
+              alt="Promo"
+              className="img-fluid"
             />
           </div>
         </div>

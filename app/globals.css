@@ -1,6 +1,3 @@
-/* ============================================================
-   1. GOOGLE FONTS & GENERAL RESET
-   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
 
 * {
@@ -17,9 +14,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ============================================================
-   2. HEADER & NAVIGATION (Grey Nav + Mega Menu Logic)
-   ============================================================ */
 .header-wrapper {
   width: 100%;
   background: white;
@@ -55,9 +49,9 @@ body {
   align-items: center;
   padding: 0 40px;
   height: 50px;
-  background-color: #f6f6f6 !important; /* Mason's Grey Nav */
+  background-color: #f6f6f6 !important;
   border-bottom: 1px solid #eee;
-  position: relative; /* Anchor for Mega Menu */
+  position: relative;
 }
 
 .nav-link-item {
@@ -67,7 +61,7 @@ body {
   color: #000 !important;
   text-decoration: none !important;
   white-space: nowrap;
-  padding: 18px 0; /* Area for hover stability */
+  padding: 18px 0;
   display: inline-block;
 }
 
@@ -85,14 +79,13 @@ body {
   margin-right: 20px;
 }
 
-/* --- MEGA MENU (Dropdown on Hover) --- */
 .nav-group {
-  position: static; /* Required for Full Width Menu */
+  position: static;
 }
 
 .mega-menu {
   position: absolute;
-  top: 50px; /* Right under Navbar */
+  top: 50px;
   left: 0;
   width: 100vw;
   background: white;
@@ -103,7 +96,7 @@ body {
   padding: 40px 60px;
   border-bottom: 1px solid #ddd;
   z-index: 999;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .nav-group:hover .mega-menu {
@@ -137,9 +130,6 @@ body {
   text-decoration: underline;
 }
 
-/* ============================================================
-   3. HOME PAGE SLIDER (Fixed Horizontal Layout)
-   ============================================================ */
 .product-section {
   padding: 40px 0;
   background-color: #fff;
@@ -178,9 +168,6 @@ body {
   object-fit: cover;
 }
 
-/* ============================================================
-   4. PRODUCT DETAIL PAGE (PDP Styles)
-   ============================================================ */
 .breadcrumb-text {
   font-size: 10px;
   color: #ff4d4d;
@@ -221,7 +208,6 @@ body {
   line-height: 1;
 }
 
-/* Size Buttons */
 .size-container {
   display: flex;
   gap: 6px;
@@ -246,9 +232,6 @@ body {
   border-color: #ff4d4d;
 }
 
-/* ============================================================
-   5. SIZE GUIDE DRAWER (Side Modal)
-   ============================================================ */
 .size-drawer-overlay {
   position: fixed;
   top: 90px;
@@ -276,7 +259,7 @@ body {
   padding: 30px;
   transform: translateX(100%);
   transition: 0.4s;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
 }
 
 .size-drawer-overlay.open .size-drawer {
@@ -310,9 +293,6 @@ body {
   color: white;
 }
 
-/* ============================================================
-   6. PERKS GRID & ACCORDIONS
-   ============================================================ */
 .perks-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -328,7 +308,9 @@ body {
   line-height: 1.3;
 }
 
-.perk-icon { font-size: 16px; }
+.perk-icon {
+  font-size: 16px;
+}
 
 .pdp-accordion {
   border-top: 0.5px solid #eee;
@@ -343,9 +325,6 @@ body {
   text-transform: uppercase;
 }
 
-/* ============================================================
-   7. UTILITIES
-   ============================================================ */
 .sticky-top {
   position: sticky !important;
   top: 100px !important;
@@ -359,7 +338,6 @@ body {
   margin-top: 4px;
 }
 
-/* Action Buttons */
 .btn-dark-pdp {
   background-color: #1a1a1a !important;
   color: #fff !important;
@@ -374,4 +352,54 @@ body {
   color: #fff !important;
   border-radius: 4px !important;
   padding: 15px !important;
+}
+
+.product-section {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.product-container {
+  display: flex !important;
+  overflow-x: auto !important;
+  gap: 20px;
+  padding: 0 40px;
+  scrollbar-width: none;
+}
+
+.product-card {
+  flex: 0 0 300px !important;
+  text-decoration: none !important;
+  color: #000 !important;
+  cursor: pointer;
+}
+
+.product-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4.2;
+  background-color: #eee;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-card:hover .main-image {
+  opacity: 0;
+}
+
+.product-card:hover .hover-image {
+  opacity: 1;
 }

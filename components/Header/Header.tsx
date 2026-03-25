@@ -11,7 +11,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Mega Menu Component (Sirf Left Links ke liye)
   const MegaMenuContent = ({ title }: { title: string }) => (
     <div className="mega-menu">
       <div className="container-fluid">
@@ -46,7 +45,7 @@ export default function Header() {
           <div className="col-md-4 offset-md-2">
             <div className="position-relative">
               <img src="/images/img1_1.jpg" className="w-100" style={{ height: '200px', objectFit: 'cover' }} alt="promo" />
-              <div className="mt-2 fw-bold text-uppercase" style={{fontSize: '10px'}}>Explore the new SS26 Lookbook</div>
+              <div className="mt-2 fw-bold text-uppercase" style={{ fontSize: '10px' }}>Explore the new SS26 Lookbook</div>
             </div>
           </div>
         </div>
@@ -59,34 +58,28 @@ export default function Header() {
 
   return (
     <header className={`header-wrapper ${isScrolled ? "sticky-active" : ""}`}>
-      {/* 1. TOP BAR */}
       {!isScrolled && (
         <div className="top-bar">
-          <div style={{width: '33%'}}>SIGN UP FOR THE NEWSLETTER – 10% OFF YOUR FIRST ORDER</div>
-          <div className="top-bar-m text-center" style={{width: '33%'}}>M</div>
-          <div className="text-end" style={{width: '33%'}}>IN USD / EN ›</div>
+          <div style={{ width: '33%' }}>SIGN UP FOR THE NEWSLETTER – 10% OFF YOUR FIRST ORDER</div>
+          <div className="top-bar-m text-center" style={{ width: '33%' }}>M</div>
+          <div className="text-end" style={{ width: '33%' }}>IN USD / EN ›</div>
         </div>
       )}
 
-      {/* 2. MAIN NAV */}
       <nav className="main-nav">
-        {/* Left Links + Logo Section */}
         <div className="d-flex align-items-center h-100">
           <div className="d-flex gap-3 h-100 align-items-center">
             {leftLinks.map((link) => (
               <div key={link} className="nav-group h-100 d-flex align-items-center">
                 <Link href="/" className="nav-link-item">{link}</Link>
-                {/* Hover karne par Mega Menu khulega */}
                 <MegaMenuContent title={link} />
               </div>
             ))}
           </div>
-          
-          {/* Logo - Ab ye nav-group ke bahar hai (No Dropdown) */}
+
           <Link href="/" className="brand-logo text-decoration-none text-dark">MASON'S</Link>
         </div>
 
-        {/* Right Links Section - Ab ye nav-group ke bahar hain (No Dropdown) */}
         <div className="d-flex align-items-center gap-3 h-100">
           {rightLinks.map((link) => (
             <Link key={link} href="/" className="nav-link-item">

@@ -1,15 +1,20 @@
 "use client";
 import React, { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function ProductDetail() {
-  // --- 1. SAARE STATES YAHAN HAIN (Error Fix) ---
+  const router = useRouter();
+
   const [activeThumb, setActiveThumb] = useState(0);
   const [selectedSize, setSelectedSize] = useState('S');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Aapki local images ka path
+  const productName = "FLYSHIRT GIUBBOTTO";
+  const productPrice = "435.00";
+  const productImg = "/images/img1_1.jpg";
+
   const productImages = [
     "/images/img1_1.jpg",
     "/images/img1_2.png",
@@ -18,7 +23,6 @@ export default function ProductDetail() {
     "/images/img1_5.png",
   ];
 
-  // Size Chart Data
   const sizeChart = [
     { it: '44', uni: 'XS', fr: '40', de: '44', uk: '32' },
     { it: '46', uni: 'S', fr: '42', de: '46', uk: '34' },
@@ -32,10 +36,20 @@ export default function ProductDetail() {
     imageRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const handleCheckout = () => {
+    const query = new URLSearchParams({
+      name: productName,
+      price: productPrice,
+      size: selectedSize,
+      img: productImg
+    }).toString();
+
+    router.push(`/checkout?${query}`);
+  };
+
   return (
     <main className="position-relative">
 
-      {/* --- SIZE GUIDE DRAWER --- */}
       <div className={`size-drawer-overlay ${isDrawerOpen ? 'open' : ''}`} onClick={() => setIsDrawerOpen(false)}>
         <div className="size-drawer" onClick={(e) => e.stopPropagation()}>
           <div className="d-flex justify-content-between align-items-center mb-4">
@@ -65,13 +79,11 @@ export default function ProductDetail() {
       </div>
 
       <div className="container-fluid px-5 mt-4">
-        {/* Breadcrumb */}
         <div className="breadcrumb-text mb-4">
           SS26 MASON'S MEN / FLYSHIRT DELAMERE MEN'S OVERSHIRT JACKET IN STRETCH GABARDINE
         </div>
 
         <div className="row">
-          {/* LEFT COLUMN: Thumbnails + Calligraphy + Accordions */}
           <div className="col-md-3">
             <div className="sticky-top">
               <div className="d-flex gap-2 mb-4">
@@ -85,7 +97,6 @@ export default function ProductDetail() {
               </div>
               <div className="calligraphy-title">Flyshirt Giubbotto</div>
 
-              {/* Left Accordions */}
               <div className="mt-5 pt-4">
                 <div className="pdp-accordion">
                   <div className="pdp-accordion-title"><span>PRODUCT DESCRIPTION</span><span>+</span></div>
@@ -102,7 +113,6 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          {/* CENTER COLUMN: Scrolling Images */}
           <div className="col-md-6 px-4">
             <div className="d-flex flex-column gap-3">
               {productImages.map((img, index) => (
@@ -113,22 +123,19 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Product Info & Perks */}
           <div className="col-md-3">
             <div className="sticky-top ps-lg-2">
-              <h1 className="fw-bold h3 mb-1" style={{ letterSpacing: '1px' }}>FLYSHIRT GIUBBOTTO</h1>
+              <h1 className="fw-bold h3 mb-1" style={{ letterSpacing: '1px' }}>{productName}</h1>
               <p className="small text-muted mb-5" style={{ fontSize: '9px' }}>STRETCH GABARDINE</p>
 
-              {/* Info Table */}
               <div className="mb-5">
                 <div className="pdp-info-row"><div className="pdp-label">Style</div><div className="pdp-value">FLYSHIRT GIUBBOTTO</div></div>
                 <div className="pdp-info-row"><div className="pdp-label">Model</div><div className="pdp-value">FLYSHIRT DELAMERE MEN'S OVERSHIRT JACKET IN STRETCH GABARDINE</div></div>
-                <div className="pdp-info-row"><div className="pdp-label">Price</div><div className="pdp-value fw-bold" style={{ fontSize: '11px' }}>$435.00</div></div>
+                <div className="pdp-info-row"><div className="pdp-label">Price</div><div className="pdp-value fw-bold" style={{ fontSize: '11px' }}>${productPrice}</div></div>
                 <div className="pdp-info-row"><div className="pdp-label">SKU</div><div className="pdp-value">2CA2332 CBE700-TS60-SS26</div></div>
                 <div className="pdp-info-row border-0"><div className="pdp-label">Color</div><div className="pdp-value">BASALT GREY</div></div>
               </div>
 
-              {/* Size IT Header and Buttons */}
               <div className="mb-5">
                 <div className="size-header-row d-flex justify-content-between mb-2">
                   <span className="fw-bold" style={{ fontSize: '9px' }}>SIZE IT</span>
@@ -145,25 +152,27 @@ export default function ProductDetail() {
                     </div>
                   ))}
                 </div>
-                <div className="text-muted mt-2" style={{ fontSize: '10px' }}>ZZ</div>
               </div>
 
-              {/* Size Guide Accordion */}
               <div className="border-top border-bottom py-3 d-flex justify-content-between align-items-center mb-4"
                 onClick={() => setIsDrawerOpen(true)} style={{ cursor: 'pointer' }}>
                 <span className="small fw-bold" style={{ fontSize: '10px' }}>SIZE GUIDE</span>
                 <span>+</span>
               </div>
 
-              {/* Actions & Perks */}
               <div className="text-center">
                 <div className="d-flex align-items-center justify-content-center gap-2 mb-3 small">
                   <span style={{ color: '#ff4d4d' }}>●</span> Last item available
                 </div>
                 <button className="btn btn-dark w-100 rounded-0 py-3 fw-bold mb-2 btn-pdp-main">ADD TO CART</button>
-                <button className="btn w-100 py-3 text-white fw-bold d-flex align-items-center justify-content-center gap-2 btn-shop-pay">
+
+                <button
+                  onClick={handleCheckout}
+                  className="btn w-100 py-3 text-white fw-bold d-flex align-items-center justify-content-center gap-2 btn-shop-pay"
+                >
                   Buy with <span style={{ fontStyle: 'italic', fontSize: '18px' }}>shop</span>
                 </button>
+
                 <a href="#" className="small text-dark d-block mt-3 text-decoration-underline" style={{ fontSize: '9px' }}>More payment options</a>
               </div>
 

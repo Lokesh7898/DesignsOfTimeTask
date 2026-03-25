@@ -13,7 +13,6 @@ function CheckoutContent() {
     <div className="checkout-main">
       <div className="container">
         <div className="row g-5">
-          {/* LEFT: FORM */}
           <div className="col-md-7">
             <h5 className="fw-bold mb-4 text-uppercase">Shipping Details</h5>
             <form className="row g-3">
@@ -53,12 +52,11 @@ function CheckoutContent() {
             </form>
           </div>
 
-          {/* RIGHT: SUMMARY */}
           <div className="col-md-5">
             <div className="order-summary-box">
               <h5 className="fw-bold mb-4 text-uppercase">Your Order</h5>
               <div className="d-flex gap-3 mb-4 border-bottom pb-4">
-                <img src={img} width="80" height="110" style={{objectFit:'cover'}} alt="product" />
+                <img src={img} width="80" height="110" style={{ objectFit: 'cover' }} alt="product" />
                 <div>
                   <div className="fw-bold">{name}</div>
                   <div className="text-muted">Size: {size}</div>

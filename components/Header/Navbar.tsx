@@ -10,7 +10,6 @@ export default function Navbar() {
           {menus.map((menu) => (
             <li key={menu} className="nav-item nav-item-dropdown">
               <a className="nav-link" href="#">{menu}</a>
-              {/* Dropdown sirf Men sections par dikhana hai toh condition laga sakte hain */}
               {menu.includes("Men") && <MegaMenu />}
             </li>
           ))}
