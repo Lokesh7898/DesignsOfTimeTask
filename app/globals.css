@@ -1,0 +1,377 @@
+/* ============================================================
+   1. GOOGLE FONTS & GENERAL RESET
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #000;
+  font-size: 11px;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   2. HEADER & NAVIGATION (Grey Nav + Mega Menu Logic)
+   ============================================================ */
+.header-wrapper {
+  width: 100%;
+  background: white;
+  z-index: 4000;
+  position: relative;
+}
+
+.sticky-active {
+  position: fixed;
+  top: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.top-bar {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 40px;
+  font-size: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fff;
+}
+
+.top-bar-m {
+  font-family: serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main-nav {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 50px;
+  background-color: #f6f6f6 !important; /* Mason's Grey Nav */
+  border-bottom: 1px solid #eee;
+  position: relative; /* Anchor for Mega Menu */
+}
+
+.nav-link-item {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  padding: 18px 0; /* Area for hover stability */
+  display: inline-block;
+}
+
+.nav-link-item:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+
+.brand-logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* --- MEGA MENU (Dropdown on Hover) --- */
+.nav-group {
+  position: static; /* Required for Full Width Menu */
+}
+
+.mega-menu {
+  position: absolute;
+  top: 50px; /* Right under Navbar */
+  left: 0;
+  width: 100vw;
+  background: white;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 40px 60px;
+  border-bottom: 1px solid #ddd;
+  z-index: 999;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.nav-group:hover .mega-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-column h6 {
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.menu-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-column ul li {
+  font-size: 10px;
+  color: #666;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.menu-column ul li:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* ============================================================
+   3. HOME PAGE SLIDER (Fixed Horizontal Layout)
+   ============================================================ */
+.product-section {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.product-container {
+  display: flex !important;
+  overflow-x: auto !important;
+  gap: 20px;
+  padding: 0 40px;
+  scrollbar-width: none;
+}
+
+.product-container::-webkit-scrollbar {
+  display: none;
+}
+
+.product-card {
+  flex: 0 0 300px !important;
+  text-decoration: none !important;
+  color: #000 !important;
+  cursor: pointer;
+}
+
+.product-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4.2;
+  background-color: #eee;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   4. PRODUCT DETAIL PAGE (PDP Styles)
+   ============================================================ */
+.breadcrumb-text {
+  font-size: 10px;
+  color: #ff4d4d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pdp-info-row {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 0.5px solid #f2f2f2;
+  align-items: flex-start;
+}
+
+.pdp-label {
+  width: 100px;
+  font-size: 9px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.pdp-value {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 500;
+  color: #000;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.calligraphy-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 50px;
+  color: #ff4d4d;
+  margin-top: 100px;
+  transform: rotate(-8deg);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Size Buttons */
+.size-container {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.size-btn-custom {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #ddd;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.size-btn-custom.active {
+  background: #ff4d4d;
+  color: white;
+  border-color: #ff4d4d;
+}
+
+/* ============================================================
+   5. SIZE GUIDE DRAWER (Side Modal)
+   ============================================================ */
+.size-drawer-overlay {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 90px);
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 3000;
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.size-drawer-overlay.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.size-drawer {
+  width: 450px;
+  height: 100%;
+  background: white;
+  padding: 30px;
+  transform: translateX(100%);
+  transition: 0.4s;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+}
+
+.size-drawer-overlay.open .size-drawer {
+  transform: translateX(0);
+}
+
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.size-table th {
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.size-table td {
+  border: 1px solid #f0f0f0;
+  padding: 12px;
+  text-align: center;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.size-table tr.selected td {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* ============================================================
+   6. PERKS GRID & ACCORDIONS
+   ============================================================ */
+.perks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 10px;
+  margin-top: 30px;
+}
+
+.perk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.perk-icon { font-size: 16px; }
+
+.pdp-accordion {
+  border-top: 0.5px solid #eee;
+  padding: 15px 0;
+}
+
+.pdp-accordion-title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   7. UTILITIES
+   ============================================================ */
+.sticky-top {
+  position: sticky !important;
+  top: 100px !important;
+  z-index: 10;
+}
+
+.thumb-active-line {
+  height: 1.5px;
+  background: black;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Action Buttons */
+.btn-dark-pdp {
+  background-color: #1a1a1a !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  padding: 15px !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.btn-shop-pay {
+  background-color: #5a31f4 !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  padding: 15px !important;
+}
